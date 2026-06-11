@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>那些與中靈日本短宣隊相關的事：上帝在日本與台灣的工作</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── 基礎重置 ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── CSS 變數 ── */
+    :root {
+      --jp: #534AB7;
+      --jp-light: #EEEDFE;
+      --jp-dark: #3C3489;
+      --jp-mid: #7F77DD;
+      --tw: #0F6E56;
+      --tw-light: #E1F5EE;
+      --tw-dark: #085041;
+      --tw-mid: #1D9E75;
+      --bg: #FAFAF8;
+      --bg2: #F3F2EE;
+      --bg3: #ECEAE4;
+      --text: #1A1916;
+      --text2: #5A5852;
+      --text3: #9A9890;
+      --border: rgba(0,0,0,0.10);
+      --border2: rgba(0,0,0,0.18);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --spine-w: 2px;
+      --font-body: 'Noto Sans TC', sans-serif;
+      --font-display: 'Noto Serif TC', serif;
+    }
+
+    /* ── 全域 ── */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── 頁首 ── */
+    header {
+      background: var(--text);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(255,255,255,0.04) 39px,
+          rgba(255,255,255,0.04) 40px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 39px,
+          rgba(255,255,255,0.04) 39px,
+          rgba(255,255,255,0.04) 40px
+        );
+    }
+    header > * { position: relative; }
+    .header-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.75rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+    header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── 圖例列 ── */
+    .legend-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .legend-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-sep {
+      width: 1px; height: 20px;
+      background: var(--border2);
+    }
+    .legend-count {
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+
+    /* ── 欄位標題 ── */
+    .col-headers {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 0;
+      gap: 0;
+    }
+    .col-hd {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      padding: 0 12px;
+    }
+    .col-hd.left { text-align: right; color: var(--jp-dark); }
+    .col-hd.right { text-align: left; color: var(--tw-dark); }
+    .col-hd.center { text-align: center; }
+
+    /* ── 時間軸主體 ── */
+    .timeline-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1rem 1rem 4rem;
+      position: relative;
+    }
+    .spine {
+      position: absolute;
+      left: calc(50% + 0px);
+      top: 1rem;
+      bottom: 0;
+      width: var(--spine-w);
+      background: var(--border2);
+      transform: translateX(-50%);
+    }
+
+    /* ── 時間軸列 ── */
+    .tl-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: start;
+      margin-bottom: 8px;
+      gap: 0;
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .tl-row:nth-child(1)  { animation-delay: 0.05s; }
+    .tl-row:nth-child(2)  { animation-delay: 0.10s; }
+    .tl-row:nth-child(3)  { animation-delay: 0.15s; }
+    .tl-row:nth-child(4)  { animation-delay: 0.20s; }
+    .tl-row:nth-child(5)  { animation-delay: 0.25s; }
+    .tl-row:nth-child(6)  { animation-delay: 0.30s; }
+    .tl-row:nth-child(7)  { animation-delay: 0.35s; }
+    .tl-row:nth-child(8)  { animation-delay: 0.40s; }
+    .tl-row:nth-child(9)  { animation-delay: 0.45s; }
+    .tl-row:nth-child(10) { animation-delay: 0.50s; }
+    .tl-row:nth-child(11) { animation-delay: 0.55s; }
+    .tl-row:nth-child(12) { animation-delay: 0.60s; }
+
+    .cell-left  { padding: 0 14px 0 0; text-align: right; }
+    .cell-right { padding: 0 0 0 14px; text-align: left; }
+    .cell-mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding-top: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 年份標籤 */
+    .yr-badge {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text3);
+      white-space: nowrap;
+      line-height: 1;
+      background: var(--bg);
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    /* 節點圓點 */
+    .dot {
+      width: 15px; height: 15px;
+      border-radius: 50%;
+      border: 2.5px solid var(--bg);
+      outline: 2px solid transparent;
+      outline-offset: 1px;
+      cursor: pointer;
+      transition: transform 0.2s, outline-color 0.2s;
+      flex-shrink: 0;
+    }
+    .dot:hover { transform: scale(1.35); }
+    .dot.active { transform: scale(1.4); outline-color: currentColor; }
+
+    /* ── 事件卡片 ── */
+    .ev-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 13px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      margin-bottom: 4px;
+      text-align: inherit;
+    }
+    .ev-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .ev-card.active-jp {
+      border-color: var(--jp-mid);
+      box-shadow: 0 0 0 2px rgba(83,74,183,0.15);
+    }
+    .ev-card.active-tw {
+      border-color: var(--tw-mid);
+      box-shadow: 0 0 0 2px rgba(15,110,86,0.15);
+    }
+    .ev-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .ev-sub {
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-top: 3px;
+    }
+    .ev-flag {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 1px 7px;
+      border-radius: 20px;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    /* 佔位（left-only / right-only） */
+    .tl-row.left-only  .cell-right { visibility: hidden; pointer-events: none; }
+    .tl-row.right-only .cell-left  { visibility: hidden; pointer-events: none; }
+
+    /* ── 詳細資訊面板 ── */
+    .detail-panel {
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      padding: 0 1rem;
+    }
+    .detail-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      min-height: 100px;
+      transition: border-color 0.2s;
+    }
+    .detail-box.jp { border-left: 4px solid var(--jp); }
+    .detail-box.tw { border-left: 4px solid var(--tw); }
+    .detail-empty {
+      font-size: 0.875rem;
+      color: var(--text3);
+      font-style: italic;
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    .d-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .detail-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .detail-box .d-sub {
+      font-size: 0.78rem;
+      color: var(--text3);
+      margin-bottom: 0.75rem;
+    }
+    .detail-box p {
+      font-size: 0.875rem;
+      color: var(--text2);
+      line-height: 1.85;
+    }
+
+    /* ── 頁尾 ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.75rem;
+      color: var(--text3);
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    /* ── 手機響應式 ── */
+    @media (max-width: 600px) {
+      header { padding: 2rem 1rem 1.75rem; }
+      .col-headers { grid-template-columns: 1fr 56px 1fr; padding: 1rem 0.5rem 0; }
+      .tl-row { grid-template-columns: 1fr 56px 1fr; }
+      .cell-left  { padding-right: 8px; }
+      .cell-right { padding-left: 8px; }
+      .cell-mid { padding-top: 10px; }
+      .yr-badge { font-size: 0.6rem; }
+      .ev-title { font-size: 0.75rem; }
+      .ev-sub   { font-size: 0.65rem; }
+      .ev-card  { padding: 8px 10px; }
+      .detail-box { padding: 1rem 1.1rem; }
+      .detail-box h2 { font-size: 0.95rem; }
+      .detail-box p  { font-size: 0.825rem; }
+      .timeline-wrap { padding: 0.75rem 0.5rem 3rem; }
+      .detail-panel  { padding: 0 0.5rem; }
+      .legend-bar { gap: 1rem; padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── 頁首 ── -->
+<header>
+  <p class="header-eyebrow">亞洲基督宗教史</p>
+  <h1>那些與中靈日本短宣隊相關的事：<br>上帝在日本與台灣的工作</h1>
+  <p>點選任一事件卡片，即可閱讀詳細說明</p>
+</header>
+
+<!-- ── 圖例 ── -->
+<div class="legend-bar">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#534AB7"></div>
+    <span style="color:#3C3489">日本</span>
+  </div>
+  <div class="legend-sep"></div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#0F6E56"></div>
+    <span style="color:#085041">台灣</span>
+  </div>
+</div>
+
+<!-- ── 欄位標題 ── -->
+<div class="col-headers">
+  <div class="col-hd left">日本</div>
+  <div class="col-hd center">年代</div>
+  <div class="col-hd right">台灣</div>
+</div>
+
+<!-- ── 時間軸 ── -->
+<div class="timeline-wrap">
+  <div class="spine"></div>
+  <div id="tl-rows"></div>
+</div>
+
+<!-- ── 詳細資訊 ── -->
+<div class="detail-panel">
+  <div class="detail-box" id="detail-box">
+    <p class="detail-empty">↑ 點選上方任一事件卡片，即可在此閱讀詳細說明。</p>
+  </div>
+</div>
+
+<!-- ── 頁尾 ── -->
+<footer>
+  <p>資料僅供教育與研究參考。如有史料建議，歡迎補充。 聯絡我們：starstream dot blccjl at gmail dot com</p>
+</footer>
+
+<script>
+  const JP = '#534AB7', TW = '#0F6E56';
+  const JP_BG = '#EEEDFE', JP_TX = '#3C3489';
+  const TW_BG = '#E1F5EE', TW_TX = '#085041';
+
+  const events = [
+    {
+      year: 1549, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '耶穌會傳教開始',
+      title: '方濟各·沙勿略抵達日本',
+      desc: '耶穌會傳教士方濟各·沙勿略（Francis Xavier）於1549年8月登陸鹿兒島，成為首位進入日本的基督宗教傳教士。他在日本停留約兩年，奠定了早期日本教會的基礎。數十年內，日本基督徒人數成長至逾三十萬人，分布在九州各地與京都周邊。'
+    },
+    {
+      year: 1563, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '首位基督徒大名',
+      title: '大村純忠受洗',
+      desc: '大村純忠成為日本第一位受洗的大名（封建領主），開放領地讓耶穌會傳教士自由活動，並驅逐境內佛教僧侶。他的歸信帶動大批領民入教，也使長崎港成為基督教對外貿易的重要據點，為日本天主教的發展提供了關鍵的政治支撐。'
+    },
+    {
+      year: 1597, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '首次大規模迫害',
+      title: '長崎二十六聖人殉道',
+      desc: '豐臣秀吉下令將26名基督徒——包括6名方濟各會傳教士與20名日本信徒——釘十字架處決於長崎西坂。這是日本史上首次大規模處決基督徒，標誌著官方態度的急劇轉變。1862年，教宗庇護九世將他們列為聖人，西坂至今仍是重要的天主教朝聖地。'
+    },
+    {
+      year: 1622, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '單日處決五十五人',
+      title: '長崎大殉教',
+      desc: '德川幕府在長崎單日處決55名基督徒，部分以火刑，部分以斬首。這是日本歷史上規模最大的單日殉道事件，是幕府系統性滅絕基督宗教運動的一部分。倖存的信徒被迫轉入地下，成為秘密保守信仰的「隱蔽切支丹」（Kakure Kirishitan）。'
+    },
+    {
+      year: 1624, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '改革宗傳教啟動',
+      title: '荷蘭東印度公司登台',
+      desc: '荷蘭東印度公司（VOC）在今台南安平一帶建立熱蘭遮城，並攜帶改革宗（喀爾文派）牧師來台灣。這開啟了台灣最早有組織的基督宗教宣教活動，主要對象為居住在西南平原的西拉雅族原住民。荷蘭的殖民統治為宣教提供了行政保護與資源。'
+    },
+    {
+      year: 1636, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '首批大規模歸信',
+      title: '干治士為原住民施洗',
+      desc: '荷蘭宣教士格奧爾格·干治士（Georgius Candidius）在學習西拉雅語言與文化數年後，開始為大批西拉雅族人施洗。他將禱文與要理問答譯成西拉雅語，創造了台灣原住民語言最早的書寫形式之一，奠定了本土化宣教的重要基礎。'
+    },
+
+    {
+      year: 1662, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '宣教工作中斷',
+      title: '鄭成功驅逐荷蘭人',
+      desc: '明朝遺臣鄭成功（國姓爺）在圍攻九個月後驅逐荷蘭人，結束荷蘭在台三十八年的殖民統治。改革宗宣教工作就此中斷，歸信的原住民失去牧靈支援，基督宗教在台灣幾乎銷聲匿跡，直至十九世紀西方宣教士再度抵台。'
+    },
+    {
+      year: 1865, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '二百年秘密信仰重見天日',
+      title: '浦上隱蔽切支丹現身',
+      desc: '法國傳教士在長崎建成大浦天主堂後不久，一群浦上村民悄悄前來，表明他們已秘密保守信仰逾兩百年。這一「信徒發現」（Découverte des chrétiens）事件震驚全世界，被視為近代日本天主教史上最感人的時刻之一，後來被列為聯合國教科文組織世界文化遺產的一部分。'
+    },
+    {
+      year: 1865, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '英國長老會宣教開始',
+      title: '馬雅各醫師抵台',
+      desc: '英國長老會宣教士馬雅各（James Laidlaw Maxwell）抵達台南，成為近代台灣新教宣教的先驅。他開設診所與教堂，確立了醫療宣教並進的模式，深刻影響台灣宣教史的發展方向。他後來遷往府城（今台南市區），持續拓展宣教範圍。'
+    },
+    {
+      year: 1872, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '日本第一間新教教會',
+      title: '橫濱海岸教會創立',
+      desc: '1872年3月10日，橫濱海岸教會（Yokohama Kaigan Church）正式成立，被視為日本第一間由日本人組成的新教教會。在美國傳教士詹姆士·巴拉（James Ballagh）的協助下，十一名日本信徒受洗並組成會眾。這一歷史性時刻標誌著基督宗教在日本正式生根，走向本土化的新階段。'
+    },
+    {
+      year: 1872, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '明治維新開放宗教自由',
+      title: '明治政府解除禁教令',
+      desc: '在國際社會的強烈壓力下，明治政府撤除禁止基督宗教的告示牌，正式解禁。新教與天主教傳教士大批湧入日本，建立學校、醫院與大學，對近代日本的現代化進程產生深遠影響。同志社大學、青山學院、立教大學等知名學府皆在此時期由宣教士創辦。'
+    },
+    {
+      year: 1872, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '馬偕博士抵達淡水並於第三日投宿中壢',
+      title: '馬偕博士抵達淡水',
+      desc: '加拿大長老會宣教士馬偕（George Leslie Mackay）抵達淡水，開展北台灣宣教工作。他學習台語，為民眾拔牙、培訓本地傳道人，並建立數十座教堂。他娶台灣女子張聰明為妻，深耕本土文化，被譽為「偕牧師」，是台灣歷史上最受敬愛的外國宣教士之一。1872年3月11日，他與同工從淡水南下徒步抵達當時人口約4000人的中壢，投宿客棧，並在日記中留下這段艱辛卻難忘的旅程。'
+    },
+    {
+      year: 1895, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '教會在殖民體制下運作',
+      title: '日本統治台灣開始',
+      desc: '甲午戰爭後《馬關條約》將台灣割讓給日本。日本當局起初容許基督宗教宣教活動，但隨著皇民化運動推進，逐漸施壓要求教會配合國家神道。本地教會因此加速培養本土領袖，台灣基督長老教會也在此壓力下發展出相對獨立的組織架構。'
+    },
+    {
+      year: 1925, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '復興特會',
+      title: '魏克斯赴上海舉辦復興特會',
+      desc: '1925年，英國籍日本宣教士魏克斯（Paget Wilkes）赴上海舉辦復興特會，深遠影響了華人教會領袖的屬靈生命與服侍方向。'
+    },
+    {
+      year: 1925, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '上海', sub: '宣教士自日本影響華人世界',
+      title: '趙世光與計志文在上海復興特會中決志獻身',
+      desc: '1925年來自日本的英國籍宣教士舉辦的復興特會中，趙世光牧師與計志文牧師決志獻身。趙世光牧師後來創辦了中國基督教靈糧世界佈道會，而計志文牧師創立中國佈道會，除了宣教工作，也投入慈善與教育事工。'
+    },
+    {
+      year: 1942, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '上海', sub: '上海靈糧堂建立',
+      title: '趙世光牧師建立上海靈糧堂',
+      desc: '1942年，懷有強烈佈道負擔且具佈道恩賜的趙世光牧師，首先在中國大陸建立上海靈糧堂，開啟華人福音與靈恩事工的新階段。'
+    },
+    {
+      year: 1945, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '麥克阿瑟呼召宣教士',
+      title: '戰後基督教復興',
+      desc: '日本戰敗後，盟軍最高司令麥克阿瑟將軍公開呼召一千名宣教士赴日。大批美國新教團體相繼抵達，教會人數短暫激增。儘管熱潮未能持續，基督宗教自此在日本公共生活與高等教育領域永久扎根，對戰後日本的民主化進程也產生了一定影響。'
+    },
+    {
+      year: 1949, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '教會快速成長',
+      title: '中華民國政府遷台',
+      desc: '政府與逾百萬大陸移民撤退來台，帶來各主流新教宗派。基督宗教在台灣迅速多元化，輔仁大學、東海大學等教會學府相繼創立，新的神學院、修會與宗派也陸續建立，奠定現代台灣教會多元並存的格局。'
+    },
+    {
+      year: 1952, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '艾里克·桑貝里牧師夫妻',
+      title: '和歌山福音開拓開始',
+      desc: '1952年2月29日，艾里克·桑貝里牧師夫妻（Rev. & Mrs. Erik Sandberg / エリック・サンベリ）在和歌山開始進行福音開拓，開啟當地新的教會福音事工。'
+    },
+    {
+      year: 1954, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '和歌山福音教會成立',
+      title: '和歌山福音教會設立',
+      desc: '1954年10月28日，和歌山福音教會正式成立，成為和歌山地區福音拓展的重要據點。'
+    },
+    {
+      year: 1954, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '佈道會與教會成立',
+      title: '台北靈糧堂成立',
+      desc: '1954年7月，趙世光牧師來到台灣，在現今北一女中舉辦佈道會；9月成立台北靈糧堂，為台灣靈糧堂事工奠定紮實根基。'
+    },
+    {
+      year: 1956, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '靈性生活教育',
+      title: '聖德基督學院成立',
+      desc: '1956年，查培理博士（Dr. Charles P. Ridley，約翰霍普金斯大學化學博士）與查師母來台後，曾協助籌備中原理工學院並擔任教職。為進一步實踐「基督化靈性生活教育」，他們於暑假辭去職務，並在協同創辦人李和教授及多位同工的協助下，憑信心獨資於中壢新生路一段創立聖德基督學院，後於1970年代搬遷至新生路二段現址。'
+    },
+    {
+      year: 1960, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '中壢佈道大會',
+      title: '趙世光博士主領中壢佈道會',
+      desc: '1960年10月24-27日，中壢各教會與遠東歸主協會合作，請趙世光博士主領佈道大會。四晚共有約250人決志信主，每晚參加人數皆破千，影響中壢及周邊鄉鎮。'
+    },
+    {
+      year: 1955, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '教會辦學',
+      title: '私立中原理工學院於中壢成立',
+      desc: '賈嘉美宣教士與張靜愚、陳維屏、柯理培等關心教育的基督徒與中壢地方士紳，於1955年在中壢「普仁崗」成立私立中原理工學院。1971－1975年，韓偉院長在短短四年間帶進來的基督徒老師群，影響了該校往後數十年的發展。1980年正式升格改制為中原大學，關注「全人教育」，為台灣重要的教會辦學典範。'
+    },    {
+      year: 1992, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '中壢靈糧堂成立',
+      title: '中壢靈糧堂成立',
+      desc: '1992年，中壢靈糧堂成立，為中壢帶來屬靈更新。'
+    },
+    {
+      year: 1996, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '按牧就職',
+      title: '王桂華按牧就職',
+      desc: '1996年，王桂華受按牧，就任中壢靈糧堂牧師，帶領教會進入新的牧養與宣教階段。'
+    },
+    {
+      year: 1998, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '分堂成立',
+      title: '楊梅靈糧堂成立',
+      desc: '1998年，中壢靈糧堂成立其第一間分堂楊梅靈糧堂，為桃園地區帶來福音影響力。'
+    },
+    {
+      year: 2013, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '新堂落成',
+      title: '中壢靈糧堂新堂落成',
+      desc: '2013年落成於莒光公園旁的中壢靈糧堂新堂，以「神的寶座」為建築異象，見證全體會友同心奉獻與熱心擺上。建堂期間弟兄姐妹清洗上千塊舊磁磚解決建材短缺，並發揮水電、視訊、音響等各專業恩賜投入施工。新堂啟用後，成為宣教植堂總部，亦是大桃園眾教會聯合聚會的祝福。'
+    },    {
+      year: 2025, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
+      tag: '日本', sub: '接待短宣隊',
+      title: '和歌山福音教會接待中壢短宣隊',
+      desc: '2025年，和歌山福音教會接待來自台灣中壢靈糧堂的短期宣教隊。隊員們與當地教會同工一起進行社區關懷、文化交流與福音事工，深化了日台兩地教會間的宣教合作與屬靈夥伴關係。'
+    },
+    {
+      year: 2025, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '國際短期宣教',
+      title: '首次中壢靈糧堂日本短宣隊',
+      desc: '2025年中壢靈糧堂首度差派日本短宣隊，前往和歌山福音教會進行福音事工；隊員們透過實際的社區走入、文化交流與在地關懷，全力協助當地教會接觸未信者，同時也藉此深化並培育了教會弟兄姊妹的國際宣教視野。'
+    },  ];
+
+  /* ── 依年代排序 ── */
+  const sorted = [...events].sort((a, b) => a.year - b.year);
+  const years  = [...new Set(sorted.map(e => e.year))].sort((a, b) => a - b);
+
+  const container = document.getElementById('tl-rows');
+  let activeId = null;
+
+  /* ── 建立列 ── */
+  years.forEach(yr => {
+    const left  = sorted.find(e => e.year === yr && e.side === 'left');
+    const right = sorted.find(e => e.year === yr && e.side === 'right');
+    const cls   = left && right ? '' : left ? 'left-only' : 'right-only';
+    const id_l  = left  ? `ev-${yr}-l` : null;
+    const id_r  = right ? `ev-${yr}-r` : null;
+    const dotEv = left || right;
+
+    const dotClick = left
+      ? `selectEv('${id_l}')`
+      : `selectEv('${id_r}')`;
+
+    const leftHTML = left ? `
+      <div class="ev-card" id="${id_l}" onclick="selectEv('${id_l}')">
+        <span class="ev-flag" style="background:${left.bg};color:${left.tx}">${left.tag}</span>
+        <div class="ev-title">${left.title}</div>
+        <div class="ev-sub">${left.sub}</div>
+      </div>` : '';
+
+    const rightHTML = right ? `
+      <div class="ev-card" id="${id_r}" onclick="selectEv('${id_r}')">
+        <span class="ev-flag" style="background:${right.bg};color:${right.tx}">${right.tag}</span>
+        <div class="ev-title">${right.title}</div>
+        <div class="ev-sub">${right.sub}</div>
+      </div>` : '';
+
+    const row = document.createElement('div');
+    row.className = `tl-row ${cls}`;
+    row.innerHTML = `
+      <div class="cell-left">${leftHTML}</div>
+      <div class="cell-mid">
+        <div class="yr-badge">${yr}</div>
+        <div class="dot"
+             style="background:${dotEv.color};color:${dotEv.color}"
+             onclick="${dotClick}"
+             role="button"
+             aria-label="${yr}年事件"></div>
+      </div>
+      <div class="cell-right">${rightHTML}</div>
+    `;
+    container.appendChild(row);
+  });
+
+  /* ── 點選事件 ── */
+  function selectEv(id) {
+    /* 清除前一個 active */
+    if (activeId) {
+      const prev = document.getElementById(activeId);
+      if (prev) prev.classList.remove('active-jp', 'active-tw');
+      /* 清除節點點的 active */
+      const [, yr, side] = activeId.split('-');
+      const dotEl = document.querySelector(`.cell-mid`);
+    }
+
+    activeId = id;
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const [, yr, side] = id.split('-');
+    const ev = sorted.find(e =>
+      e.year === parseInt(yr) && e.side === (side === 'l' ? 'left' : 'right')
+    );
+    if (!ev) return;
+
+    el.classList.add(side === 'l' ? 'active-jp' : 'active-tw');
+
+    /* 更新詳細面板 */
+    const box = document.getElementById('detail-box');
+    box.className = 'detail-box ' + (side === 'l' ? 'jp' : 'tw');
+    box.innerHTML = `
+      <span class="d-tag" style="background:${ev.bg};color:${ev.tx}">${ev.tag} · ${ev.year} 年</span>
+      <h2>${ev.title}</h2>
+      <p class="d-sub">${ev.sub}</p>
+      <p>${ev.desc}</p>
+    `;
+
+    /* 滾動至詳細面板 */
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+</body>
+</html>
