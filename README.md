@@ -1,6 +1,7 @@
-# Japan Mission Website
+# 2026 中壢靈糧堂日本短宣隊 策展網站 Japan Mission Website 
 
 A website dedicated to the Japan Mission 2026 with Bread of Lift Christian Church in Chungli.
+
 2026中壢靈糧堂日本短宣隊 策展網站
 
 ## Contributing
