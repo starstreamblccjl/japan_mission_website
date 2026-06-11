@@ -1,50 +1,7 @@
 # Japan Mission Website
 
-A website dedicated to the Japan Mission.
-
-## Overview
-
-This project contains the website for the Japan Mission.
-
-## Getting Started
-
-To get started with this project, clone the repository and follow the setup instructions below.
-
-### Prerequisites
-
-- Node.js (or your project's required runtime)
-- npm or yarn (package manager)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/starstreamblccjl/japan_mission_website.git
-   cd japan_mission_website
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-
-## Project Structure
-
-```
-japan_mission_website/
-├── README.md
-├── package.json
-└── ...
-```
-
-## Features
-
-- [Add your features here]
+A website dedicated to the Japan Mission 2026 with Bread of Lift Christian Church in Chungli.
+2026中壢靈糧堂日本短宣隊 策展網站
 
 ## Contributing
 
