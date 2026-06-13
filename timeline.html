@@ -295,6 +295,30 @@
       min-height: 100px;
       transition: border-color 0.2s;
     }
+    .detail-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .close-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text3);
+      padding: 0.45rem 0.85rem;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .close-btn:hover {
+      background: rgba(0,0,0,0.04);
+      color: var(--text);
+      border-color: var(--border2);
+    }
     .detail-box.jp { border-left: 4px solid var(--jp); }
     .detail-box.tw { border-left: 4px solid var(--tw); }
     .detail-empty {
@@ -311,6 +335,42 @@
       border-radius: 20px;
       margin-bottom: 0.6rem;
       font-weight: 500;
+    }
+    .detail-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .detail-content {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .detail-text {
+      flex: 1;
+    }
+    .detail-image {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .detail-image-fallback {
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      min-height: 120px;
+      border-radius: 50%;
+      background: var(--tw);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: 2px solid var(--tw);
     }
     .detail-box h2 {
       font-family: var(--font-display);
@@ -359,6 +419,8 @@
       .timeline-wrap { padding: 0.75rem 0.5rem 3rem; }
       .detail-panel  { padding: 0 0.5rem; }
       .legend-bar { gap: 1rem; padding: 0.75rem 1rem; }
+      .detail-content { flex-direction: column; gap: 1rem; }
+      .detail-media { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -503,6 +565,7 @@
       year: 1872, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
       tag: '台灣', sub: '馬偕博士抵達淡水並於第三日投宿中壢',
       title: '1872/3/9馬偕博士抵達淡水',
+      image: 'image/MacKay1872.png',
       desc: '加拿大長老會宣教士馬偕（George Leslie Mackay）於1872年3月9日抵達淡水，第三天的3月11日，他與同工從淡水南下開始第一次的徒步旅程，當晚抵達當時人口約4000人的中壢，投宿客棧，並在日記中留下這段艱辛卻難忘的旅程。從此起，馬偕開展了北台灣宣教工作，他學習台語，為民眾拔牙、培訓本地傳道人，並建立數十座教堂。他娶台灣女子張聰明為妻，深耕本土文化，被譽為「偕牧師」，是台灣歷史上最受敬愛的外國宣教士之一。'
     },
     {
@@ -603,9 +666,10 @@
     },
     {
       year: 2013, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
-      tag: '台灣', sub: '新堂落成',
+      tag: '台灣', sub: '杭州路新堂落成',
       title: '中壢靈糧堂新堂落成',
-      desc: '2013年落成於莒光公園旁的中壢靈糧堂新堂，以「神的寶座」為建築異象，見證全體會友同心奉獻與熱心擺上。建堂期間弟兄姐妹清洗上千塊舊磁磚解決建材短缺，並發揮水電、視訊、音響等各專業恩賜投入施工。新堂啟用後，成為宣教植堂總部，亦是大桃園眾教會聯合聚會的祝福。'
+      image: 'image/blccjl.jpg',
+      desc: '2013年落成於莒光公園旁的中壢靈糧堂新堂，以「神的寶座」為建築設計理念，見證全體會友同心奉獻與熱心擺上。建堂期間弟兄姐妹清洗上千塊舊磁磚解決建材短缺，並發揮水電、視訊、音響等各專業恩賜投入施工。新堂啟用後，成為宣教植堂總部，亦是大桃園眾教會聯合聚會的祝福。'
     },    {
       year: 2025, side: 'left', color: JP, bg: JP_BG, tx: JP_TX,
       tag: '日本', sub: '接待短宣隊',
@@ -676,9 +740,6 @@
     if (activeId) {
       const prev = document.getElementById(activeId);
       if (prev) prev.classList.remove('active-jp', 'active-tw');
-      /* 清除節點點的 active */
-      const [, yr, side] = activeId.split('-');
-      const dotEl = document.querySelector(`.cell-mid`);
     }
 
     activeId = id;
@@ -696,15 +757,41 @@
     /* 更新詳細面板 */
     const box = document.getElementById('detail-box');
     box.className = 'detail-box ' + (side === 'l' ? 'jp' : 'tw');
+    const mediaHTML = ev.image
+      ? `<div class="detail-media"><img class="detail-image" src="${ev.image}" alt="${ev.title}"></div>`
+      : `<div class="detail-media"><div class="detail-image-fallback"><span>${ev.year}</span></div></div>`;
     box.innerHTML = `
-      <span class="d-tag" style="background:${ev.bg};color:${ev.tx}">${ev.tag} · ${ev.year} 年</span>
-      <h2>${ev.title}</h2>
-      <p class="d-sub">${ev.sub}</p>
-      <p>${ev.desc}</p>
+      <div class="detail-toolbar">
+        <span class="d-tag" style="background:${ev.bg};color:${ev.tx}">${ev.tag} · ${ev.year} 年</span>
+        <button class="close-btn" type="button" onclick="closeDetail()">關閉並回到年份</button>
+      </div>
+      <div class="detail-content">
+        ${mediaHTML}
+        <div class="detail-text">
+          <h2>${ev.title}</h2>
+          <p class="d-sub">${ev.sub}</p>
+          <p>${ev.desc}</p>
+        </div>
+      </div>
     `;
 
     /* 滾動至詳細面板 */
     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closeDetail() {
+    if (!activeId) return;
+    const current = document.getElementById(activeId);
+    if (current) {
+      current.classList.remove('active-jp', 'active-tw');
+      const row = current.closest('.tl-row');
+      if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    activeId = null;
+
+    const box = document.getElementById('detail-box');
+    box.className = 'detail-box';
+    box.innerHTML = `<p class="detail-empty">↑ 點選上方任一事件卡片，即可在此閱讀詳細說明。</p>`;
   }
 </script>
 </body>
