@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>上帝在日本與台灣的工作</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,7 +211,7 @@
 
     /* 年份標籤 */
     .yr-badge {
-      font-size: 0.65rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--text3);
       white-space: nowrap;
@@ -240,6 +241,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 10px 13px;
+      display: block;
       cursor: pointer;
       transition: border-color 0.15s, box-shadow 0.15s;
       margin-bottom: 4px;
@@ -263,6 +265,21 @@
       color: var(--text);
       line-height: 1.45;
     }
+    /* ── 事件卡片：縮圖支援 ── */
+    .ev-card-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .ev-thumb img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .ev-body { flex: 1; }
     .ev-sub {
       font-size: 0.7rem;
       color: var(--text3);
@@ -423,6 +440,13 @@
       .legend-bar { gap: 1rem; padding: 0.75rem 1rem; }
       .detail-content { flex-direction: column; gap: 1rem; }
       .detail-media { justify-content: flex-start; }
+      .ev-thumb img { width: 48px; height: 48px; }
+      .ev-card-inner { gap: 0.5rem; }
+    }
+
+    /* 調整手機年代表示較大些 */
+    @media (max-width: 600px) {
+      .yr-badge { font-size: 0.80rem; }
     }
   </style>
 </head>
@@ -746,19 +770,27 @@
       year: 1999, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
       tag: '台灣', sub: '921大地震救援',
       title: '1999年921大地震與教會救援',
+      image: 'image/921_ccra.png', 
       desc: '1999年9月21日發生集集大地震，剛成立一年的基督教救助協會聯合各地教會，成為國語教會與獨立教會的統籌平台；而台灣基督長老教會則利用原本深耕中南部的網絡，直接在第一線展開救援。台北靈糧堂在時任主任牧師周神助的帶領下，第一時間動員全台弟兄姊妹的物資與奉獻深入中台灣災區。'
     },
     {
       year: 2000, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
       tag: '台灣', sub: '宗教研究所成立',
       title: '中原大學成立宗教研究所',
+      image: 'image/cycu_gsr.jpeg', 
       desc: '2000年，中原大學成立宗教研究所，其特色是專研基督宗教，以基督精神背景，致力於培育文化宣教、神學研究及教會機構的事奉人才。'
     },
     {
       year: 2010, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
-      tag: '台灣', sub: '大桃園千人受洗',
-      title: '中壢靈糧堂與桃園眾教會千人受洗',
+      tag: '台灣', sub: '大桃園千人受洗@中原大學',
+      title: '桃園眾教會舉辦千人受洗',
       desc: '2010年10月3日，中壢靈糧堂與桃園眾教會共同舉辦大桃園基督教千人受洗活動，地點在中原大學體育館。'
+    },
+    {
+      year: 2012, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
+      tag: '台灣', sub: '跨文化宣教分堂成立',
+      title: '中壢菲語靈糧堂成立',
+      desc: '2012年，中壢菲語靈糧堂成立，成為中壢靈糧網絡中第一間跨文化宣教分堂，服事菲律賓語社群。'
     },
     {
       year: 2013, side: 'right', color: TW, bg: TW_BG, tx: TW_TX,
@@ -816,15 +848,25 @@
     const leftHTML = lefts.map((left, i) => `
       <div class="ev-card" id="ev-${yr}-l-${i}" onclick="selectEv('ev-${yr}-l-${i}')">
         <span class="ev-flag" style="background:${left.bg};color:${left.tx}">${left.tag}</span>
-        <div class="ev-title">${left.title}</div>
-        <div class="ev-sub">${left.sub}</div>
+        <div class="ev-card-inner">
+          ${left.image ? `<div class="ev-thumb"><img src="${left.image}" alt="${left.title}"></div>` : ''}
+          <div class="ev-body">
+            <div class="ev-title">${left.title}</div>
+            <div class="ev-sub">${left.sub}</div>
+          </div>
+        </div>
       </div>`).join('') || '';
 
     const rightHTML = rights.map((right, i) => `
       <div class="ev-card" id="ev-${yr}-r-${i}" onclick="selectEv('ev-${yr}-r-${i}')">
         <span class="ev-flag" style="background:${right.bg};color:${right.tx}">${right.tag}</span>
-        <div class="ev-title">${right.title}</div>
-        <div class="ev-sub">${right.sub}</div>
+        <div class="ev-card-inner">
+          <div class="ev-body">
+            <div class="ev-title">${right.title}</div>
+            <div class="ev-sub">${right.sub}</div>
+          </div>
+          ${right.image ? `<div class="ev-thumb"><img src="${right.image}" alt="${right.title}"></div>` : ''}
+        </div>
       </div>`).join('') || '';
 
     const row = document.createElement('div');
