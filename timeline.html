@@ -939,7 +939,11 @@
     if (current) {
       current.classList.remove('active-jp', 'active-tw');
       const row = current.closest('.tl-row');
-      if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (row) {
+        const isMobile = window.innerWidth <= 600;
+        const target = isMobile ? (row.querySelector('.yr-badge') || row) : row;
+        target.scrollIntoView({ behavior: 'smooth', block: isMobile ? 'start' : 'center' });
+      }
     }
     activeId = null;
 
